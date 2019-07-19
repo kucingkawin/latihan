@@ -7,7 +7,6 @@ class ApiService {
   Client client = Client();
 
   Future<List<Profile>> getProfiles() async {
-    //Test Perubahan
     //Dapatkan response client
     Response response = await client.get("$baseUrl");
 
