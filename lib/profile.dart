@@ -2,25 +2,25 @@ import 'dart:convert';
 
 class Profile {
 
-  String npm;
+  String id;
   String nama;
-  String kelas;
-  String sesi;
+  String gaji;
+  String umur;
 
-  Profile({this.npm, this.nama, this.kelas, this.sesi});
+  Profile({this.id, this.nama, this.gaji, this.umur});
 
   factory Profile.dariJson(Map<String, dynamic> map) {
     return Profile(
-        npm: map["npm"], nama: map["nama"], kelas: map["kelas"], sesi: map["sesi"]);
+        id: map["id"], nama: map["employee_name"], gaji: map["employee_salary"], umur: map["employee_age"]);
   }
 
   Map<String, dynamic> keJson() {
-    return {"npm": npm, "nama": nama, "kelas": kelas, "sesi": sesi};
+    return {"id": id, "name": nama, "salary": gaji, "age": umur};
   }
 
   @override
   String toString() {
-    return 'Profile{npm: $npm, nama: $nama, kelas: $kelas, sesi: $sesi}';
+    return 'Profile{id: $id, nama: $nama, gaji: $gaji, umur: $umur}';
   }
 
 }
@@ -31,7 +31,16 @@ List<Profile> profileDariJson(String jsonData) {
   final data = json.decode(jsonData);
 
   // Kembalikan
-  return List<Profile>.from(data['result'].map((item) => Profile.dariJson(item)));
+  return List<Profile>.from(data.map((item) => Profile.dariJson(item)));
+}
+
+Profile profileDariSatuJson(String jsonData) {
+
+  // Ubah data ke format json
+  final data = json.decode(jsonData);
+
+  // Kembalikan
+  return Profile.dariJson(data);
 }
 
 String profileToJson(Profile data) {

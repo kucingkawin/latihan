@@ -21,7 +21,7 @@ class _LoginState extends State<StatefulWidget>
   void login()
   {
     // Cek email
-    int emailBenar = emailTextEditingController.text == 'nandaprasesoft98@gmail.com' ? 1 : 0;
+    int emailBenar = emailTextEditingController.text == 'test' ? 1 : 0;
     
     // Cek password
     int passwordBenar = passwordTextEditingController.text == '123' ? 1 : 0;

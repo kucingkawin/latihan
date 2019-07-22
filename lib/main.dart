@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'login.dart';
 import 'menu.dart';
+import 'input.dart';
+import 'argumentDaftar.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,10 +26,32 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue
       ),
       home: Login(),
-      routes: <String, Widget Function(BuildContext)> {
-        Login.tag: (context) => Login(),
-        Menu.tag: (context) => Menu()
-      },      
+      onGenerateRoute: (RouteSettings routeSettings) {
+        print('ROUTE: ' + routeSettings.name);
+        if(routeSettings.name == Input.tag)
+        {
+          ArgumentDaftar args = routeSettings.arguments;
+
+          // Then, extract the required data from the arguments and
+          // pass the data to the correct screen.
+          return MaterialPageRoute(
+            builder: (context) {
+              return Input(args);
+            },
+          );
+        }
+        else
+        {
+          return MaterialPageRoute(
+            builder: (context) {
+              if(routeSettings.name == Login.tag)
+                return Login();
+              else if (routeSettings.name == Menu.tag)
+                return Menu();
+            },
+          );
+        }
+      },
     );
   }
 }
